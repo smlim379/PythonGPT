@@ -165,8 +165,8 @@ else:
 
     else:
         with st.form("questions_form"):
-            for question in response["questions"]:
-                st.write(question["question"])
+            for idx, question in enumerate(response["questions"]):
+                st.write(f"**Q{idx+1}. {question['question']}**")
                 value = st.radio("Select an option.", [answer["answer"] for answer in question["answers"]], index=None)
                 if {"answer": value, "correct":True} in question["answers"]:
                     st.success("Correct!")

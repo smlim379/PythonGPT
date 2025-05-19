@@ -251,20 +251,10 @@ if url:
                 st.markdown(query)
             
             memory.chat_memory.add_user_message(query)
-            
-
-            # 1. Exact match
-            if query in cache:
-                answer = cache[query]
-                if isinstance(answer, str):
-                    send_message(answer, "ai")
-                    memory.chat_memory.add_ai_message(answer)
-                else:
-                    st.error("Exact answer is not a string.") 
-                st.stop()
-
+                        
             # 2. Similar match
             similar = find_similar_question(query, question_store)
+            st.write(f"Similar question: {similar}")
             if similar and similar in cache:
                 similar_answer = cache[similar]
                 if isinstance(similar_answer, str):
